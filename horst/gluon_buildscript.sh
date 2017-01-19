@@ -69,9 +69,11 @@ echo "###############nextbuild################" >> buildlog.txt
 #shasums erstellen
 cd ./gluon/output/images/sysupgrade/
 shasum -a 512 * > shasum512
+md5sum > md5sum
 cd -
 cd ./gluon/output/images/factory/
 shasum -a 512 * > shasum512
+md5sum > md5sum
 cd -
 
 ##shutdown after build

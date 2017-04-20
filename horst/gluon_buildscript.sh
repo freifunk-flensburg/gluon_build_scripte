@@ -109,7 +109,7 @@ case $answer in
 		make clean
 		make update
 
-		##targets
+		##targets # consider a make clean after each target to reduce hdd space impact
 		make -j$MAKETHREADS GLUON_TARGET=ar71xx-tiny $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG
 		make -j$MAKETHREADS GLUON_TARGET=ar71xx-generic $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG
 		make -j$MAKETHREADS GLUON_TARGET=ar71xx-mikrotik $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG

@@ -1,5 +1,5 @@
 #!/bin/bash
-### script signs checksumfiles
+### script signs checksumfiles with ecdsautil secret
 
 ## settings
 SECRETPATH="/path/to/secret" #path to secretfile

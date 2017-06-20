@@ -144,6 +144,11 @@ case $answer in
 		echo "" >> buildlog.txt
 		echo "###############nextbuild################" >> buildlog.txt
 
+		#autoupdate manifest erstellen
+		cd ./gluon/
+		make manifest $BRANCH GLUON_RELEASE=$VERSION
+		cd -
+
 		#shasums erstellen
 		cd ./gluon/output/images/sysupgrade/
 		shasum -a 512 * > shasum512

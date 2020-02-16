@@ -11,29 +11,32 @@
 
 #name! of the branch 
 #BRANCHNAME="exp"
-BRANCHNAME="exp"
-#BRANCHNAME="custom"
+#BRANCHNAME="stable"
+BRANCHNAME="custom"
+
 
 #community release version (leave empty if not needed)
+COMRELEASE=""
 #COMRELEASE="2015.1.2-0"
-COMRELEASE="2018.1.1-0"
+#COMRELEASE="2020.1.0-0"
 
 #additional info
-#ADDINFO="lede4_incl_841ndv12_11s"
-ADDINFO="_batmanadv14"
+ADDINFO=""
+#ADDINFO="_batmanadv14"
 
 
 ##autoupdater_branch from which the image will get updates (leave empty for autoupdater disabled)
-#BRANCH=""
+BRANCH=""
 #BRANCH="GLUON_BRANCH=stable"
-BRANCH="GLUON_BRANCH=experimental"
+#BRANCH="GLUON_BRANCH=experimental"
 
 ##building broken images
-#BROKEN="1"
 BROKEN="BROKEN=1"
+#BROKEN=""
 
 ##make loglevel verbose
 #LOGLEVEL="V=s"
+#LOGLEVEL="V=sc"
 LOGLEVEL=""
 
 ##make logfile anlegen
@@ -117,8 +120,8 @@ case $answer in
 		make -j$MAKETHREADS GLUON_TARGET=brcm2708-bcm2708 $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
 		make -j$MAKETHREADS GLUON_TARGET=brcm2708-bcm2709 $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
 		make -j$MAKETHREADS GLUON_TARGET=brcm2708-bcm2710 $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
-		make -j$MAKETHREADS GLUON_TARGET=ipq40xx $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
-		make -j$MAKETHREADS GLUON_TARGET=ipq806x $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
+		make -j$MAKETHREADS GLUON_TARGET=ipq40xx-generic $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
+		make -j$MAKETHREADS GLUON_TARGET=ipq806x-generic $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
 		make -j$MAKETHREADS GLUON_TARGET=mpc85xx-generic $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
 		make -j$MAKETHREADS GLUON_TARGET=mvebu-cortexa9 $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean
 		make -j$MAKETHREADS GLUON_TARGET=ramips-mt7620 $BRANCH DEFAULT_GLUON_RELEASE=$VERSION $BROKEN $LOGLEVEL $BUILDLOG && make clean

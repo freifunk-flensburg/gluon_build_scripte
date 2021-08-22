@@ -12,11 +12,13 @@ case $answer in
 	j*|J*|y*|Y*) #buildcase on answer yes
 
 			#clone gluon
-			git clone https://github.com/freifunk-gluon/gluon.git
+			#git clone https://github.com/freifunk-gluon/gluon.git
+			git clone git@github.com:freifunk-gluon/gluon.git
 
 			#clone site-fffl
 			cd gluon
-			git clone https://github.com/freifunk-flensburg/site-fffl.git site
+			#git clone https://github.com/freifunk-flensburg/site-fffl.git site
+			git clone git@github.com:freifunk-flensburg/site-fffl.git site
 			echo ""
 			echo "---------------------------------------------------"
 			echo "git cloning of gluon and site-fffl finished" 

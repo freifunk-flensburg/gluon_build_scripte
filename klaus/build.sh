@@ -31,7 +31,28 @@ cd -
 VERSION="${BUILD_NAME}-${SITE_BRANCH}-${SITE_VERSION}_${GLUON_SHA}_${SITE_SHA}"
 OPTIONS="GLUON_AUTOUPDATER_BRANCH=${BUILD_BRANCH} GLUON_AUTOUPDATER_ENABLED=1 DEFAULT_GLUON_RELEASE=${VERSION} BROKEN=1"
 
-TARGETS=(ar71xx-generic ar71xx-tiny ar71xx-nand ath79-generic brcm2708-bcm2708 brcm2708-bcm2709 ipq40xx-generic ipq806x-generic lantiq-xrx200 lantiq-xway mpc85xx-generic mpc85xx-p1020 ramips-mt7620 ramips-mt7621 ramips-mt76x8 ramips-rt305x sunxi-cortexa7 x86-generic x86-geode x86-legacy x86-64)
+TARGETS=()
+TARGETS+=(ar71xx-generic)
+TARGETS+=(ar71xx-tiny)
+TARGETS+=(ar71xx-nand)
+TARGETS+=(ath79-generic)
+TARGETS+=(brcm2708-bcm2708)
+TARGETS+=(brcm2708-bcm2709)
+TARGETS+=(ipq40xx-generic)
+TARGETS+=(ipq806x-generic)
+TARGETS+=(lantiq-xrx200)
+TARGETS+=(lantiq-xway)
+TARGETS+=(mpc85xx-generic)
+TARGETS+=(mpc85xx-p1020)
+TARGETS+=(ramips-mt7620)
+TARGETS+=(ramips-mt7621)
+TARGETS+=(ramips-mt76x8)
+TARGETS+=(ramips-rt305x)
+TARGETS+=(sunxi-cortexa7)
+TARGETS+=(x86-generic)
+TARGETS+=(x86-geode)
+TARGETS+=(x86-legacy)
+TARGETS+=(x86-64)
 
 LOGFILE="${PWD}/log_build_$(date +%s).txt"
 THREADS=$(nproc)
@@ -66,13 +87,13 @@ case $answer in
         SECONDS=0
 
         log "Starting gluon make update"
-        make -j"${THREADS}" update "${OPTIONS}"
+        make -j"${THREADS}" update ${OPTIONS}
 
         log "Starting gluon make clean"
-        make -j"${THREADS}" clean  "${OPTIONS}"
+        make -j"${THREADS}" clean  ${OPTIONS}
 
         log "Starting gluon make update again"
-        make -j"${THREADS}" update "${OPTIONS}"
+        make -j"${THREADS}" update ${OPTIONS}
 
         log "Time for preparing: $(log_time)"
 
@@ -80,17 +101,17 @@ case $answer in
             SECONDS=0
 
             log "Building ${TARGET}"
-            make -j"${THREADS}" GLUON_TARGET="${TARGET}" "${OPTIONS}"
+            make -j"${THREADS}" GLUON_TARGET="${TARGET}" ${OPTIONS}
 
             log "Built ${TARGET}"
-            make -j"${THREADS}" GLUON_TARGET="${TARGET}" "${OPTIONS}" clean
+            make -j"${THREADS}" GLUON_TARGET="${TARGET}" ${OPTIONS} clean
 
             log "Time for ${TARGET}: $(log_time)"
         done
 
         log "Starting manifest generation"
 
-        make -j"${THREADS}" "${OPTIONS}" manifest
+        make -j"${THREADS}" manifest ${OPTIONS}
 
         log "Manifest: $(cat ./output/images/sysupgrade/"${BUILD_BRANCH}".manifest | shasum -a 512)"
 

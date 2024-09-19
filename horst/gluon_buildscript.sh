@@ -117,6 +117,8 @@ case $answer in
 		
 		make update
 		make clean
+  		#apply patches from /gluon/site/patches
+		bash ./site/scripts/apply_patches.sh ./ ./site/patches
 		make update
 
 		##targets # consider GLUON_AUTOREMOVE=1 on each target to reduce hdd space impact
